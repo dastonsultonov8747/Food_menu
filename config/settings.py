@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8#7p8nm34olkq(acu-6=1@1*i^$rycj31wz^vsc2w2pddv27b4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['food-menu-lkrb.onrender.com', '127.0.0.1', 'localhost']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
