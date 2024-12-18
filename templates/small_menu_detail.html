@@ -106,16 +106,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const quantity = parseInt(quantityInput.value);
 
         if (quantity > 0) {
-            const title = document.querySelector(`#product-${productId} .product-title`).textContent;
+            const title = document.querySelector(`#product-${productId} .card-title`).textContent;
             const price = document.querySelector(`#product-${productId} .product-price`).textContent;
             localStorage.setItem(`product_${productId}`, JSON.stringify({ title, price, quantity }));
 
-            toggleQuantity(productId);
-            const cartAction = document.getElementById('cart-action-' + productId);
-            cartAction.style.display = "none";
-
+            // Hide quantity controls after saving
             const quantityButtons = document.getElementById('quantity-buttons-' + productId);
             quantityButtons.style.display = "none";
+
+            const cartAction = document.getElementById('cart-action-' + productId);
+            cartAction.style.display = "none";
         } else {
             localStorage.removeItem(`product_${productId}`);
             toggleQuantity(productId);
