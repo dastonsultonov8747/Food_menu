@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Save product to localStorage
         localStorage.setItem(`product_${productId}`, JSON.stringify(productData));
 
-        // Show quantity controls
+        // Show quantity controls and hide add to cart button
         toggleQuantity(productId);
     };
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         quantityInput.value = quantity;
-        const title = document.querySelector(`#product-${productId} .product-title`).textContent;
+        const title = document.querySelector(`#product-${productId} .card-title`).textContent;
         const price = document.querySelector(`#product-${productId} .product-price`).textContent;
 
         if (quantity > 0) {
@@ -120,6 +120,11 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem(`product_${productId}`);
             toggleQuantity(productId);
         }
+    };
+
+    window.removeItemFromCart = function (productId) {
+        localStorage.removeItem(`product_${productId}`);
+        toggleQuantity(productId); // Revert to showing the "Add to Cart" button
     };
 
     // Initialize products' quantity control based on localStorage
