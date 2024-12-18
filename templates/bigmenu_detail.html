@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="menu_title">
+    {% for bigmenu in bigmenus %}
+    <a href="{% url 'bigmenu_detail' bigmenu.id %}">
+        <button class="button">
+            {{ bigmenu.title }}
+        </button>
+    </a>
+
+    {% endfor %}
+</div>
+
+
+<div class="container my-5">
+    <div class="row g-4">
+        {% for small_menu in smallmenus %}
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="card">
+                <a href="{% url 'smallmenu_detail' small_menu.id %}" style="text-decoration:none;">
+                    <img src="{{ small_menu.img.url }}" class="card-img-top" alt="{{ small_menu.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ small_menu.title }}</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,7 @@
+Django
+djangorestframework
+psycopg2
+pillow
+requests
+python-decouple==3.8
+base64

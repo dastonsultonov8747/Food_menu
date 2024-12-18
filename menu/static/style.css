@@ -1,0 +1,184 @@
+
+/* MENU TITLE */
+.menu_title {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 30px; /* Har ikki tomondan ichkariga surildi */
+    border-bottom: 1px solid #ddd;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.menu_title button {
+    color: white;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 20px 0px 20px 0px;
+    background-color: #4e0342;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    flex: 0 1 auto;
+    margin: 0 10px; /* Har ikki tomondan ichkariga surildi */
+}
+
+.menu_title button:hover {
+    background-color: #6A0572;
+    transform: scale(1.1);
+}
+
+/* CONTAINER */
+.container {
+    margin: 30px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Karta elementlari orasida bo'shliq */
+}
+
+/* CARD */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 65px 0px 65px 0px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 500px; /* Karta kengligini kattaroq qilish */
+    width: 100%;
+    margin: 20px auto; /* Har bir kartani markazlashtirish */
+
+
+.card:hover {
+    transform: scale(1.1); /* Hover effekti kartani kattalashtiradi */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* CARD IMAGE */
+.card-img-top {
+    width: 100%;
+    height: 250px; /* Rasm balandligini kattalashtirish */
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1); /* Rasm hover effekti */
+}
+
+/* CARD TITLE */
+.card-title {
+    background-color: #4e0342;
+    color: white;
+    padding: 10px;
+    border-radius: 45px 0px 45px 0px;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+}
+}
+/* FOOTER */
+footer {
+    color: #6A0572;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: "Edwardian Script ITC", sans-serif;
+}
+
+/* SAVAT BUTTON VA EMBLEMA KONTEYNER */
+.savat_emblema_container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* SAVAT BUTTON */
+.savat_button {
+    position: absolute;
+    right: 20px;
+    background-color: #4e0342;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px 3px 30px;
+    margin: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.savat_button:hover {
+    transform: scale(1.1);
+    background-color: #6A0572;
+}
+
+/* EMBLEMA */
+.Emblema {
+    font-size: 100px;
+    color: #6A0572;
+    font-family: "Edwardian Script ITC", cursive;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    transition: color 0.3s ease;
+    margin-left: 50px;
+}
+
+.Emblema:hover {
+    color: #4e0342;
+}
+
+/* BUTTONS */
+.add_to_cart, .decrement, .increment {
+    background-color: #4e0342;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px 3px 30px;
+    margin: 10px;
+}
+
+@media (max-width: 1024px) {
+    .card {
+        max-width: 350px; /* O'rtacha ekranlar uchun karta kengligi */
+    }
+
+    .card-img-top {
+        height: 220px; /* Kichikroq ekranlar uchun rasm balandligini kamaytirish */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        max-width: 300px; /* Kichik ekranlar uchun karta kengligi */
+    }
+
+    .card-img-top {
+        height: 200px; /* Kichik ekranlar uchun rasm balandligini kamaytirish */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        max-width: 250px; /* Mobil ekranlar uchun karta kengligi */
+    }
+
+    .card-img-top {
+        height: 180px; /* Mobil ekranlar uchun rasm balandligini kamaytirish */
+    }
+}

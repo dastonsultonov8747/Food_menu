@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    /* Umumiy savat uslubi */
+    .cart-container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-color: #4e0342;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        overflow: hidden;
+    }
+
+    /* Sarlavha uslubi */
+    .cart-container h2 {
+        color: #4e0342;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Bo'sh savat xabari */
+    .empty-message {
+        font-size: 18px;
+        color: #555;
+        margin: 20px 0;
+    }
+
+    /* Savat elementlari */
+    .cart-items {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        color:#4e0342;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 10px 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item span {
+        font-size: 16px;
+        color: #333;
+    }
+
+    /* Savat summasi */
+    .cart-summary {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .summary-item strong {
+        font-weight: bold;
+    }
+
+    /* Tugma uslublari */
+    button {
+        background-color: #4e0342;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #6A0572;
+        transform: scale(1.05);
+    }
+
+    .clear-cart-btn {
+        margin-top: 20px;
+    }
+
+    /* Responsivlik */
+    @media (max-width: 1024px) {
+        .cart-container {
+            padding: 15px;
+        }
+
+        .cart-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cart-summary {
+            font-size: 16px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .cart-container {
+            padding: 10px;
+        }
+
+        .cart-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .cart-summary {
+            font-size: 15px;
+        }
+
+        button {
+            font-size: 13px;
+            padding: 6px 12px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .cart-container {
+            padding: 8px;
+        }
+
+        .cart-item {
+            padding: 10px;
+            flex-direction: column;
+        }
+
+        .cart-summary {
+            font-size: 14px;
+        }
+
+        button {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+    }
+</style>
+
+<div class="cart-container">
+    <h2>Savat</h2>
+
+    <!-- Bo'sh savat xabari -->
+    <div id="cart-empty-message" class="empty-message" style="display:none;">
+        Savatingiz hozircha bo'sh.
+    </div>
+
+    <!-- Savatdagi mahsulotlar -->
+    <div id="cart-content" class="cart-items" style="display:none;">
+        <!-- Mahsulotlar dinamik tarzda qo'shiladi -->
+    </div>
+
+    <!-- Savat summasi -->
+    <div id="cart-summary" class="cart-summary" style="display:none;">
+        <div class="summary-item">
+            <span>Xizmat haqqi (10%):</span>
+            <span id="service-fee">0</span> so'm
+        </div>
+        <div class="summary-item">
+            <strong>Umumiy summa:</strong>
+            <strong id="total-sum">0</strong> so'm
+        </div>
+        <button id="clear-cart" class="clear-cart-btn">Savatni tozalash</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'java.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- Menu titles -->
+<div class="menu_title">
+    {% for smallmenu in smallmenus %}
+    <a href="{% url 'smallmenu_detail' smallmenu.id %}">
+        <button>
+            {{ smallmenu.title }}
+        </button>
+    </a>
+    {% endfor %}
+</div>
+
+<!-- Product display container -->
+<div class="container my-5">
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="card" id="product-{{ product.id }}">
+                <img src="{{ product.img.url }}" class="card-img-top" alt="Product Image">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p style="font-size:15px;margin-top: 10px;">
+                        Narxi: <span class="product-price">{{ product.price }}</span> so'm
+                    </p>
+                    <!-- Add to cart button -->
+                    <div id="cart-action-{{ product.id }}">
+                        <button class="add_to_cart"
+                                onclick="addToCart({{ product.id }}, '{{ product.title }}', {{ product.price }})">
+                            Savatga olish
+                        </button>
+                    </div>
+
+                    <!-- Quantity controls -->
+                    <div id="quantity-buttons-{{ product.id }}" class="quantity-controls" style="display:none;">
+                        <button class="increment" onclick="updateCart({{ product.id }}, 'decrement')">-</button>
+                        <input id="quantity-{{ product.id }}" type="number" value="1" readonly
+                               style="width: 40px; text-align: center; border-radius: 15px 0px 15px 0px;">
+                        <button class="increment" onclick="updateCart({{ product.id }}, 'increment')">+</button>
+                        <button class="decrement" onclick="saveCartItem({{ product.id }})">Saqlash</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+// JavaScript for handling cart actions
+document.addEventListener("DOMContentLoaded", function () {
+    window.addToCart = function (productId, title, price) {
+        const quantity = 1; // Default quantity
+        const productData = { title, price, quantity };
+
+        // Save product to localStorage
+        localStorage.setItem(`product_${productId}`, JSON.stringify(productData));
+
+        // Show quantity controls
+        toggleQuantity(productId);
+    };
+
+    window.toggleQuantity = function (productId) {
+        const quantityButtons = document.getElementById('quantity-buttons-' + productId);
+        const cartAction = document.getElementById('cart-action-' + productId);
+
+        if (localStorage.getItem(`product_${productId}`)) {
+            cartAction.style.display = "none";
+            quantityButtons.style.display = "block";
+            const productData = JSON.parse(localStorage.getItem(`product_${productId}`));
+            const quantityInput = document.getElementById('quantity-' + productId);
+            quantityInput.value = productData.quantity;
+        } else {
+            cartAction.style.display = "block";
+            quantityButtons.style.display = "none";
+        }
+    };
+
+    window.updateCart = function (productId, operation) {
+        const quantityInput = document.getElementById('quantity-' + productId);
+        let quantity = parseInt(quantityInput.value);
+
+        if (operation === 'increment') {
+            quantity++;
+        } else if (operation === 'decrement' && quantity > 0) {
+            quantity--;
+        }
+
+        quantityInput.value = quantity;
+        const title = document.querySelector(`#product-${productId} .product-title`).textContent;
+        const price = document.querySelector(`#product-${productId} .product-price`).textContent;
+
+        if (quantity > 0) {
+            localStorage.setItem(`product_${productId}`, JSON.stringify({ title, price, quantity }));
+        } else {
+            localStorage.removeItem(`product_${productId}`);
+            toggleQuantity(productId);
+        }
+    };
+
+    window.saveCartItem = function (productId) {
+        const quantityInput = document.getElementById('quantity-' + productId);
+        const quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+            const title = document.querySelector(`#product-${productId} .product-title`).textContent;
+            const price = document.querySelector(`#product-${productId} .product-price`).textContent;
+            localStorage.setItem(`product_${productId}`, JSON.stringify({ title, price, quantity }));
+
+            toggleQuantity(productId);
+            const cartAction = document.getElementById('cart-action-' + productId);
+            cartAction.style.display = "none";
+
+            const quantityButtons = document.getElementById('quantity-buttons-' + productId);
+            quantityButtons.style.display = "none";
+        } else {
+            localStorage.removeItem(`product_${productId}`);
+            toggleQuantity(productId);
+        }
+    };
+
+    // Initialize products' quantity control based on localStorage
+    Object.keys(localStorage).forEach(key => {
+        if (key.startsWith("product_")) {
+            const productId = key.split("_")[1];
+            toggleQuantity(productId);
+        }
+    });
+});
+</script>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}
