@@ -161,6 +161,10 @@ footer p {
     .card-img-top {
         height: 220px; /* Kichikroq ekranlar uchun rasm balandligini kamaytirish */
     }
+    .savat_button {
+        font-size: 14px;
+        margin-top: 30px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -171,6 +175,10 @@ footer p {
     .card-img-top {
         height: 200px; /* Kichik ekranlar uchun rasm balandligini kamaytirish */
     }
+    .savat_button {
+        font-size: 14px;
+        margin-top: 30px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -180,5 +188,22 @@ footer p {
 
     .card-img-top {
         height: 180px; /* Mobil ekranlar uchun rasm balandligini kamaytirish */
+    }
+    .savat_button {
+        font-size: 14px;
+        margin-top: 30px;
+    }
+}
+@media (max-width: 320px) {
+    .card {
+        max-width: 200px; /* Mobil ekranlar uchun karta kengligi */
+    }
+
+    .card-img-top {
+        height: 150px; /* Mobil ekranlar uchun rasm balandligini kamaytirish */
+    }
+    .savat_button {
+        font-size: 14px;
+        margin-top: 30px;
     }
 }
